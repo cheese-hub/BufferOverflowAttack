@@ -33,13 +33,13 @@ env:
 jobs:
   docker:
     runs-on: ubuntu-latest
-
-    matrix:
-      include:
-        - dockerfile: ./Proj-heapoverflow/heap/Dockerfile
-          image: cheesehub/heap-overflow
-        - dockerfile: ./Proj-heapoverflow/stack/Dockerfile
-          image: cheesehub/stack-overflow
+    strategy:
+      matrix:
+        include:
+          - dockerfile: ./Proj-heapoverflow/heap/Dockerfile
+            image: cheesehub/heap-overflow
+          - dockerfile: ./Proj-heapoverflow/stack/Dockerfile
+            image: cheesehub/stack-overflow
     steps:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
