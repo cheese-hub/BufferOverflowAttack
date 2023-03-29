@@ -36,9 +36,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - dockerfile: ./Proj-heapoverflow/heap/Dockerfile
+          - context: ./Proj-heapoverflow/heap
             image: cheesehub/heap-overflow
-          - dockerfile: ./Proj-heapoverflow/stack/Dockerfile
+          - context: ./Proj-heapoverflow/stack
             image: cheesehub/stack-overflow
     steps:
       - name: Set up Docker Buildx
@@ -70,8 +70,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: .
-          file: ${{ matrix.dockerfile }}
+          context: ${{ matrix.context }}
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
