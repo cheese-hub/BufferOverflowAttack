@@ -38,5 +38,7 @@ RUN gcc -static -g -fno-stack-protector -z execstack -w -o heapoverflow heapover
 # Compile the program
 # RUN gcc -o heapoverflow heapoverflow.c
 
+# Copy sol.py into the container
+COPY sol.py .
 # Run the program
 CMD ["bash"]
